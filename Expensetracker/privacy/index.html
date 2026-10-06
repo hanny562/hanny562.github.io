@@ -49,7 +49,8 @@
 
   <h2>What data the app stores</h2>
   <ul>
-    <li><strong>Receipts you save:</strong> amount, vendor, category, date, optional note, optional photo, optional sentiment ("worth it / neutral / regretted").</li>
+    <li><strong>Receipts you save:</strong> amount, vendor, category, date, optional note, optional photo, optional sentiment ("worth it / neutral / regretted"), optional wallet source, optional split-bill companion names, and an optional reimbursable flag.</li>
+    <li><strong>Auto-categorize rules (Pro):</strong> vendor-to-category mappings you create, used on your device to label future entries.</li>
     <li><strong>Recurring rules:</strong> vendor, amount, category, day-of-month — used to create future entries on your device.</li>
     <li><strong>Budgets:</strong> per-category monthly caps.</li>
     <li><strong>Your wage setting:</strong> optional, used to compute "hours of your life" displays.</li>
@@ -59,11 +60,19 @@
   <h2>What the app does not do</h2>
   <ul>
     <li>It does not create an account. There is no email, password, or social login.</li>
-    <li>It does not sync anywhere. Uninstalling the app deletes your data permanently — see "Backup" below for how to export first.</li>
+    <li>It does not sync to the developer's servers, and there is no cloud operated by the developer. On iOS, the optional Pro "iCloud sync" uses Apple's CloudKit with your own Apple ID — your records are copied only into your private iCloud container, which the developer cannot read. If you never enable it, nothing leaves your device.</li>
     <li>It does not run analytics or telemetry. There is no SDK that phones home.</li>
     <li>It does not use advertising identifiers (IDFA / GAID). The App Store / Play Store privacy manifests reflect this.</li>
-    <li>It does not access your contacts, location, microphone, photos library, health data, or any other system data without an explicit in-app prompt (camera and photo-library access are only triggered when you tap "Add Receipt").</li>
+    <li>It does not access your contacts, location, microphone, health data, or any other system data without an explicit prompt. Camera and photo-library access are triggered only for receipt capture (the camera button and the "Add Receipt" photo picker) and for the optional screenshot features described below.</li>
   </ul>
+
+  <h2>Screenshot capture (optional features)</h2>
+  <p>To save you typing, the apps can turn payment screenshots into expense entries:</p>
+  <ul>
+    <li><strong>Android:</strong> if you enable the "Watch receipts" Quick Settings tile, the app polls your device's Pictures/Screenshots folder for new screenshots and offers to save them as expenses. The tile can be turned off at any time and the watcher stops on its own after 30 minutes of inactivity.</li>
+    <li><strong>iOS:</strong> a Shortcuts automation can hand the app your latest screenshot when you run it. The photo library is read only at that moment.</li>
+  </ul>
+  <p>In both cases the images are read on-device only and are never uploaded.</p>
 
   <h2>OCR (receipt text recognition)</h2>
   <p>On-device only. Android uses ML Kit text recognition, iOS uses Apple Vision. Both run entirely on your device's CPU/GPU. Captured images and recognized text never leave the device.</p>
@@ -71,17 +80,17 @@
   <h2>App Groups (iOS only)</h2>
   <p>The optional Today widget reads from the same local SwiftData store via Apple's App Group sandbox. The data still does not leave the device; the App Group is just a permission to share data between the main app and its widget extension, not with the network.</p>
 
-  <h2>In-app purchase (optional tip jar)</h2>
-  <p>If you choose to send the developer a tip, the transaction is processed by Apple (iOS) or Google (Android) using their standard payment systems. The app itself never sees your card details. The transaction receipt is stored on your device in the platform-standard "purchases" database.</p>
+  <h2>In-app purchases (optional)</h2>
+  <p>If you choose to buy Pro or send the developer a tip, the transaction is processed by Apple (iOS) or Google (Android) using their standard payment systems. The app itself never sees your card details. The transaction receipt is stored on your device in the platform-standard "purchases" database.</p>
 
   <h2>Backup</h2>
-  <p>Your data lives only on your device. To save a backup, use the in-app Export to CSV action (Settings → Export CSV). This produces a standard .csv file that you can store anywhere — Files app, iCloud Drive, Google Drive, email attachment. There is no automatic backup; you control it.</p>
+  <p>Your data lives only on your device. To save a backup, use the in-app Export to CSV action (Settings → Export CSV, part of Pro). This produces a standard .csv file that you can store anywhere — Files app, iCloud Drive, Google Drive, email attachment. Pro also offers optional automatic backups: on Android a scheduled CSV written to a folder you pick (on your device or a cloud drive of your choice), on iOS the iCloud sync described above. A free weekly reminder suggests exporting a backup; it stores no data itself.</p>
 
   <h2>Children's privacy</h2>
   <p>The app does not target children and does not collect any data from any user. The age rating is 4+ in both stores.</p>
 
   <h2>Subscriptions, lifetime unlocks, and service availability</h2>
-  <p>The free version of Expense Tracker is fully functional and is expected to remain available for the foreseeable future. Optional paid products are offered through the Apple App Store and Google Play Store:</p>
+  <p>The free version of Expense Tracker covers core tracking — receipt capture, budgets, recurring bills, reports and the home-screen widget — and is expected to remain available for the foreseeable future. Optional paid products add export and automation and are offered through the Apple App Store and Google Play Store:</p>
   <ul>
     <li><strong>Tip jar</strong> — a one-time, non-consumable in-app purchase. It does not unlock any features; it is a voluntary thank-you to the developer.</li>
     <li><strong>Pro Monthly</strong> and <strong>Pro Yearly</strong> — auto-renewable subscriptions. Cancel any time in your store account settings. Both include a 14-day free trial on first activation; you will not be charged if you cancel before the trial ends.</li>
@@ -104,7 +113,7 @@
     <li>Continue to make the last published build available for download from the app's existing store page, as long as the developer maintains the developer account.</li>
     <li>Refund, at their discretion, recent subscription payments for any period after the discontinuation announcement. Refunds for the one-time Lifetime purchase are not automatic, but the developer will respond to refund requests received within 30 days of the announcement.</li>
   </ol>
-  <p>Because the app is local-first, your data continues to work on your device even if the app is removed from the store. Use the in-app Export to CSV (Settings → Export CSV) at any time to back up your data.</p>
+  <p>Because the app is local-first, your data continues to work on your device even if the app is removed from the store. Pro users can use the in-app Export to CSV (Settings → Export CSV) at any time to back up their data.</p>
 
   <h3>Why this clause is here</h3>
   <p>This section exists to be honest about the limits of "Lifetime" rather than promise something the developer cannot guarantee in perpetuity. It is consistent with the standard practice of indie one-person software businesses, and with Apple's App Review Guidelines, which require that subscription terms be clear and not deceptive.</p>
